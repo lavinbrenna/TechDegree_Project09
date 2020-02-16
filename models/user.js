@@ -11,16 +11,48 @@ module.exports = (sequelize)=>{
                 autoIncrement:true,
             },
             firstName:{
-                type: Sequelize.STRING
+                type: Sequelize.STRING,
+                allowNull:false,
+                validate:{
+                    notEmpty:{
+                        msg: "Please enter your first name"
+                    }
+                }
             },
             lastName:{
-                type:Sequelize.STRING
+                type:Sequelize.STRING,
+                allowNull: false,
+                validate:{
+                    notEmpty:{
+                        msg:"Please enter your last name" 
+                    }
+                }
             },
             emailAddress:{
-                type: Sequelize.STRING
+                type:Sequelize.STRING,
+                allowNull: false,
+                validate: {
+                    notEmpty:{
+                        msg: "Please enter your email address"
+                    },
+                    isEmail:{
+                        msg: 'Please enter a valid email address (ex: hello@world.com)'
+                    }, 
+                    unique:{
+                        args: true,
+                        msg:"Hey! This email address is already in use"
+                    }
+                }
+
             },
             password:{
-                type:Sequelize.STRING
+                type:Sequelize.STRING,
+                allowNull:false,
+                validate:{
+                    notEmpty:{
+                        msg:'Please enter a password'
+                    }
+                }
             },
             
         },{

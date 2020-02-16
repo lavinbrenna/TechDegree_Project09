@@ -15,7 +15,7 @@ module.exports = (sequelize)=>{
                 allowNull: false,
                 validate:{
                     notEmpty:{
-                        msg: "Please enter a title for your course!"
+                        msg: "Please enter a title for your course"
                     }
                 }
             },
@@ -24,7 +24,7 @@ module.exports = (sequelize)=>{
                 allowNull:false,
                 validate:{
                     notEmpty:{
-                        msg:"Please enter a description for your course!"
+                        msg:"Please enter a description for your course"
                     }
                 }
             },
