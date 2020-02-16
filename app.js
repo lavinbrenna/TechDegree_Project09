@@ -17,7 +17,7 @@ const enableGlobalErrorLogging = process.env.ENABLE_GLOBAL_ERROR_LOGGING === 'tr
   }catch(error){
     console.error('unable to connect to database :[', error);
   }
-})
+})()
 // create the Express app
 const app = express();
 app.use(express.json());

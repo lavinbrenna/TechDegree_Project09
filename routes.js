@@ -147,9 +147,18 @@ router.get('/courses/:id', asyncHandler(async (req, res)=>{
 
 // POST (CREATE) Course, set at new course Id route
 router.post('/courses', authenticateUser, asyncHandler(async (req, res)=>{
-
+    try{
     const course =  await Course.create(req.body);
-    res.status(201).location('/courses/' + course.id).end(); 
+    res.status(201).location('/courses/' + course.id).end();
+    }catch(error){
+        if(error.name ==='SequelizeValidationError')
+        {const errors = error.errors.map(err=>err.message);
+        res.status(400).json({errors});
+        }else{
+            throw error;
+        }
+    }
+
 
 }));
 
@@ -164,7 +173,7 @@ router.put('/courses/:id', authenticateUser, [
         .withMessage('Please provide a description'),
     check('userId')
         .exists()
-        .withMessage('Please provide a value for "User Id"'),
+        .withMessage('Please provide a value for User Id'),
 ] , asyncHandler(async (req, res, next)=> {
     const errors = validationResult(req);
     if(!errors.isEmpty()){ 
