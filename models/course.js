@@ -11,10 +11,22 @@ module.exports = (sequelize)=>{
                 autoIncrement:true,
             },
             title:{
-                type: Sequelize.STRING
+                type: Sequelize.STRING,
+                allowNull: false,
+                validate:{
+                    notEmpty:{
+                        msg: "Please enter a title for your course!"
+                    }
+                }
             },
             description:{
-                type:Sequelize.TEXT
+                type:Sequelize.TEXT,
+                allowNull:false,
+                validate:{
+                    notEmpty:{
+                        msg:"Please enter a description for your course!"
+                    }
+                }
             },
             estimatedTime:{
                 type:Sequelize.STRING
