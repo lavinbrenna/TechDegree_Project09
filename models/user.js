@@ -33,18 +33,15 @@ module.exports = (sequelize)=>{
                 allowNull: false,
                 validate: {
                     notEmpty:{
-                        msg: "Please enter your email address"
+                    msg:"Please enter your email address"
                     },
-                    isEmail:{
-                        msg: 'Please enter a valid email address (ex: hello@world.com)'
-                    }, 
+                    isEmail:true,//checks to see if valid email address
+                    },
                     unique:{
                         args: true,
-                        msg:"Hey! This email address is already in use"
+                        msg:"Hey! This email address is already in use"//checks to see if email addresss is already in use
                     }
-                }
-
-            },
+                },
             password:{
                 type:Sequelize.STRING,
                 allowNull:false,
